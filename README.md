@@ -43,6 +43,9 @@ Use the left mouse button to draw obstacles, and the right button to erase them.
 When the algorithm is not running:
 
 - <kbd>Return</kbd>: Start the RRT algorithm on the current map.
+- <kbd>b</kbd>: Start the RRT* algorithm on the current map.
+- <kbd>v</kbd>: Start the RRT* modify algorithm on the current map.
+- <kbd>n</kbd>: Start the A* algorithm on the current map.
 - <kbd>c</kbd>: Clear the map's obstacles.
 - <kbd>s</kbd>: Save the current map as 'map.png'
 - <kbd>l</kbd>: Load an existing 'map.png' file as the new obstacles map.
