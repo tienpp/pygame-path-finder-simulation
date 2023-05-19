@@ -2,11 +2,14 @@ __author__ = 'João Pedro Gonçalves Moreira - jpgmoreira19@gmail.com'
 
 from config import *
 from rrt import rrt
+from rrtstar import rrtstar
+from rrtstar1 import rrtstar1
+from astar import astar
 import drawing
 import events
 import pygame as pg
 pg.init()
-
+pg.display.set_caption('Ba Lang Huyen')
 def main():
 
 	drawing.screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -42,7 +45,33 @@ def main():
 				drawing.drawPath(tree)
 				gameState = 'path-found'
 			else:  # User terminated the algorithm's execution:
-				gameState = 'waiting'			
+				gameState = 'waiting'		
+		elif gameState == 'rrtstar':
+			drawing.clearEdgesPool()
+			tree = rrtstar(drawing.startPos, drawing.goalPos, drawing.obstaclesSurface)
+			if tree:  # A path was found:
+				drawing.drawPath(tree)
+				gameState = 'path-found'
+			else:  # User terminated the algorithm's execution:
+				gameState = 'waiting'
+		elif gameState == 'rrtstar1':
+			drawing.clearEdgesPool()
+			tree = rrtstar1(drawing.startPos, drawing.goalPos, drawing.obstaclesSurface)
+			if tree:  # A path was found:
+				drawing.drawPath(tree)
+				gameState = 'path-found'
+			else:  # User terminated the algorithm's execution:
+				print("path not found")
+				gameState = 'waiting'
+		elif gameState == 'astar':
+			drawing.clearEdgesPool()
+			tree = astar(drawing.startPos, drawing.goalPos, drawing.obstaclesSurface)
+			if tree:  # A path was found:
+				drawing.drawPath(tree)
+				gameState = 'path-found'
+			else:  # User terminated the algorithm's execution:
+				print("path not found")
+				gameState = 'waiting'				
 
 		drawing.update()
 

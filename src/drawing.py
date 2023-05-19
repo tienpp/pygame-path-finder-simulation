@@ -65,10 +65,11 @@ def toggleInfo():
 	global showInfo
 	showInfo = not showInfo
 
-def updateInfo(elapsed, nodes, height, length = None):
+def updateInfo(algo, elapsed, nodes, height, length = None):
 	infoSurface.fill(0)
 	elapsed = format(elapsed, '.4f')
 	lines = [
+		f'Algo: {algo}',
 		f'Time: {elapsed}s',
 		f'Nodes: {nodes}',
 		f'Height: {height}'
@@ -84,6 +85,7 @@ def drawPath(parent):
 	showInfo = True
 	current = goalPos
 	while parent[current]:
+		# print(current, parent[current])
 		pg.draw.line(treeSurface, (0, 0, 255), current, parent[current], 4)
 		pg.draw.circle(treeSurface, (0, 191, 255), current, 4)
 		current = parent[current]

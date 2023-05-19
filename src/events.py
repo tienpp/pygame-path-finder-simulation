@@ -37,6 +37,9 @@ def mainHandler(event, state, mousePos):
 			elif event.button == 3: return 'erasing'		
 		elif event.type == pg.KEYDOWN:
 			if event.key == pg.K_RETURN: return 'rrt'
+			elif event.key == pg.K_b: return 'rrtstar'
+			elif event.key == pg.K_v: return 'rrtstar1'
+			elif event.key == pg.K_n: return 'astar'	
 			elif event.key == pg.K_s: return 'save'
 			elif event.key == pg.K_l: return 'load'		
 			elif event.key == pg.K_c: return 'clear'		
@@ -49,7 +52,7 @@ def mainHandler(event, state, mousePos):
 		return 'waiting'
 
 	elif state == 'path-found':
-		if event.type == pg.KEYDOWN:
+		if event.type == pg.KEYDOWN or event.type == pg.K_b or event.type == pg.K_v:
 			if event.key == pg.K_h:
 				drawing.toggleInfo()
 			else:

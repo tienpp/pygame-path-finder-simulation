@@ -13,7 +13,10 @@ def collision(src, dst, obstacles):
 	curr = list(src)
 	while dist(curr, dst) > 1:
 		intCurr = int(curr[0]), int(curr[1])
-		if obstacles.get_at(intCurr) == OBSTACLES_COLOR:
+		try:
+			if obstacles.get_at(intCurr) == OBSTACLES_COLOR:
+				return True
+		except:
 			return True
 		curr[0] += vx
 		curr[1] += vy
