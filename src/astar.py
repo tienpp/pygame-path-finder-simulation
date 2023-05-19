@@ -1,6 +1,6 @@
 from points_container import pointsContainer
 from collision import collision
-from utils import randomPoint, inside
+from utils import randomPoint, inside, distance
 import pygame as pg
 import drawing
 import events
@@ -47,6 +47,7 @@ def astar(start, goal, obstacles):
     nodes = 1
     delta = 0
     startTime = time.perf_counter()
+    min_distance = 20
 
     while openSet:
         if not events.rrtHandler():  # handle user events.
@@ -68,7 +69,15 @@ def astar(start, goal, obstacles):
             drawing.updateInfo(algo, elapsed, nodes, height, gScore[goal])
             return parent
 
-        for neighbor in container.getNeighbors(current, obstacles, 5):
+        for neighbor in container.getNeighbors(current, obstacles, 3):
+            # Check if the neighbor is too close to any existing node
+            close_to_existing = False
+            for existing_node in container.getPoints():
+                if distance(existing_node, neighbor) < min_distance:
+                    close_to_existing = True
+                    break
+            if close_to_existing:
+                continue
             gScoreNew = gScore[current] + heuristic(current, neighbor)
 
             if not collision(neighbor, goal, obstacles):

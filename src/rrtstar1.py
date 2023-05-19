@@ -39,7 +39,7 @@ def rrtstar1(start, goal, obstacles):
             drawing.updateInfo(algo, elapsed, nodes, height)
             drawing.update()
 
-        random_point = randomPoint(start, goal, 0.2)  # Generate a random point
+        random_point = randomPoint(start, goal, 0.3)  # Generate a random point
 
         # Find the nearest point in the container to the random point
         nearest = container.NNS(random_point)

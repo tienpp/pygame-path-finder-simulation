@@ -21,6 +21,9 @@ class pointsContainer:
 	
 	def insert(self, point):
 		self._points.append(point)
+
+	def getPoints(self):
+		return self._points
 	
 	def NNS(self, point):
 		best = self._points[0]  # will throw IndexError if self._points is empty.
